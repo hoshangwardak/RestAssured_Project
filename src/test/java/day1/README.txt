@@ -23,6 +23,8 @@ Day 1
 
 -   Adding the RestAssured dependency
 
+-   Hamcrest Matcher Library is heavily used in RestAssured library
+
 
 
 
