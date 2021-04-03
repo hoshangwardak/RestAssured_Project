@@ -59,7 +59,6 @@ public class BreakingBad_Test extends BreakingBadAPI_BaseTest {
                 .contentType(ContentType.JSON)
                 ;
 
-
     }
 
 

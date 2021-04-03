@@ -33,4 +33,19 @@ Day 2
 - As we know Enum refers to the idea of fixed value so for these content-Types
   we are Enum such as ContentType(ContentType.JSON); or ContentType(ContentType.TEXT) etc..
 
+- Content Type :
+  It can show up in the request header as accept : what kind of response type you expect from the server
+   Content-Type : what kind of data you are sending to the server
+
+  It can also show up in the request Content-Type : to specify what kind of data it is in the response,
+
+  Since it's such a common term in API, RestAssured has strong support for easily getting all kind
+  of different Content-Type
+
+  using ContentType Enum
+
+  ContentType.JSON
+  ContentType.XML
+  ContentType.HTML
+  ContentType.URLENC
 
