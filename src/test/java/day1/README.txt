@@ -15,6 +15,17 @@ Day 1
 -   @Disabled is a method that is used to ignore a test. If you don't want any particular test to run
     you can disabled it.
 
+-   Hamcrest is a matcher library. It is an assertion library. It is not a complete running test
+    framework. It is not able to run test because it does not have any testing engine.
+    It is always accompanied with some other testing framework. It has a dependency that needs to
+    be added in order to use HamcrestMatcher but RestAssured dependency already includes Hamcrest
+    Matcher dependency in it.
+
+-   Adding the RestAssured dependency
+
+
+
+
 
 
 
