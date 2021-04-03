@@ -25,6 +25,8 @@ Day 1
 
 -   Hamcrest Matcher Library is heavily used in RestAssured library
 
+-   Hamcrest Matcher assertion library also needs to be imported. These assertions are very human
+    readable. Like assertThat()
 
 
 
