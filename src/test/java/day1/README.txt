@@ -28,6 +28,12 @@ Day 1
 -   Hamcrest Matcher assertion library also needs to be imported. These assertions are very human
     readable. Like assertThat()
 
+-   All matchers methods have two overloaded version. First that accept actual value and second
+    that accepts another matcher
+
+-   Each and every matcher accepts another matcher
+
+
 
 
 
