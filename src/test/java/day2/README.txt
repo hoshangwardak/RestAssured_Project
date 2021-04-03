@@ -17,4 +17,7 @@ Day 2
 
 - Another style of pathParam() is this .get("spartans/{id}", 16) see above
 
--
+- log() is a method that will provide you all the information about the
+  request you make. Mostly used one is log().all()
+  Also, there are some other methods of log() such as log().ValidationFails
+  Very Useful
