@@ -7,6 +7,15 @@ Day 1
 -   assertEquals has one particular version where you can add the error message at the end
 
 -   Life cycle annotations
+    @BeforeALL, @AfterAll, @BeforeEach, @AfterEach
+
+-   @BeforeAll and @AfterAll will run one time and method must be static
+-   @BeforeEach and @AfterEach methods do not need to be static
+
+-   @Disabled is a method that is used to ignore a test. If you don't want any particular test to run
+    you can disabled it.
+
+
 
 
 
