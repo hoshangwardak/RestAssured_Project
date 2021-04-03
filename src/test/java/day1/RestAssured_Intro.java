@@ -1,6 +1,5 @@
 package day1;
 
-import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.*;
 import static io.restassured.RestAssured.*;
@@ -77,6 +76,17 @@ public class RestAssured_Intro {
         System.out.println("response json name " + response.path("name"));
         System.out.println("response json gender = " + response.path("gender"));
         System.out.println("response json phone " + response.path("phone"));
+
+        System.out.println("=====================================================");
+
+        int id = response.path("id");
+        String name = response.path("name");
+        long phoneNumber = response.path("phone");
+
+        System.out.println("id = " + id);
+        System.out.println("name = " + name);
+        System.out.println("phoneNumber = " + phoneNumber);
+
 
     }
 

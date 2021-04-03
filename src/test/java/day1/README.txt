@@ -57,6 +57,30 @@ Day 1
 
 -   path() method is used to get a single value of the response. This method is able to give only
     one value of the json response. You cannot pass multiple json response key, only one is allowed
+    Also path() method does not define any return type, in other words its generic. you can assign
+    the returned value to any data type or object you want as long as the return type matches the T.
+    e.g: If you are trying to return an id then you are going to assign the response.path("id") to an
+    int because that response is going to give you an integer.
+
+-   All the phone number in Spartan app are stored as long so if you are trying to retrieve the phone
+    with path() method and assign it to an int. It is going to throw a classCastException why because
+    the numbers are out of the range int so assign it to long.
+
+-   baseURI is a static method coming from RestAssured that will store your URI meaning your
+    protocol+domain
+-   basePath is another static method that is coming from RestAssured to store your entry point of the
+    resource
+    The only thing you need to put in your get() method is your endpoint.
+
+-   404 means Not Found
+
+-   Make sure to clean after yourself. When you are setting the baseURI, basePath in your beforeAll
+    method then you also have to make sure to reset() in afterAll method.
+
+
+
+
+
 
 
 
