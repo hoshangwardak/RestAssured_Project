@@ -53,7 +53,10 @@ Day 1
 
 -   200 means OK
 
+-   You can also achieve execution time by sending response.getTime() method.
 
+-   path() method is used to get a single value of the response. This method is able to give only
+    one value of the json response. You cannot pass multiple json response key, only one is allowed
 
 
 
