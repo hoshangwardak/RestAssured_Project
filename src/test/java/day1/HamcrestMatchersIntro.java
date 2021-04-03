@@ -1,10 +1,8 @@
 package day1;
 
-import org.junit.jupiter.api.*;
-
 import java.util.Arrays;
 import java.util.List;
-
+import org.junit.jupiter.api.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 

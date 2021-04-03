@@ -33,6 +33,26 @@ Day 1
 
 -   Each and every matcher accepts another matcher
 
+-   Method Chaining is very important in RestAssured
+
+    When()
+    .get()
+    .Then() etc...
+
+-   4 important static imports while working with RestAssured, JUnit5 and HamcrestMatcher
+
+-   get() method is a restAssured static method through which you can make a request to retrieve data.
+
+-   You can save the response of the get() request into a Response Interface. Then you'll be able to
+    do the validation
+
+-   Response response = get(YOUR ENDPOINT);
+    response.statusCode; gives you the status code
+    response.getHeader("Content-Type") // This one gives you your data type format
+    response.asString(); // This one gives you the body payload
+
+-   200 means OK
+
 
 
 
