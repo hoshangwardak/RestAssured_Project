@@ -25,3 +25,12 @@ Day 2
 - you can assert when you reach the then section with using the following
 - .body() gives you by path. e.g: .body("id", 16 )
 
+- Networking general knowledge
+- Default port for HTTP is 80, you'll not see it in the url
+- Default port for HTTPs is 443 and you'll as well be not able to see it
+
+- Content-Type Enum
+- As we know Enum refers to the idea of fixed value so for these content-Types
+  we are Enum such as ContentType(ContentType.JSON); or ContentType(ContentType.TEXT) etc..
+
+
