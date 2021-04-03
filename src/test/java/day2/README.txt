@@ -21,3 +21,7 @@ Day 2
   request you make. Mostly used one is log().all()
   Also, there are some other methods of log() such as log().ValidationFails
   Very Useful
+
+- you can assert when you reach the then section with using the following
+- .body() gives you by path. e.g: .body("id", 16 )
+
