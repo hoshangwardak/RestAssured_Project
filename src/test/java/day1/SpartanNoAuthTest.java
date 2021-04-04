@@ -1,7 +1,7 @@
 package day1;
 
 import org.junit.jupiter.api.*;
-import utility.SpartansNoAuthBaseTest;
+import utils.SpartansNoAuthBaseTest;
 
 import static io.restassured.RestAssured.*;
 

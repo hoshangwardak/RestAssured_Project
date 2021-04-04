@@ -1,14 +1,11 @@
 package day3;
 
-import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import utility.SpartansNoAuthBaseTest;
+import utils.SpartansNoAuthBaseTest;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -150,8 +147,9 @@ public class SpartanJsonPath_Test extends SpartansNoAuthBaseTest {
         List<Long> allPhoneNumbers = jsonPath.getList("phone",Long.class);
         assertThat(allNames, hasSize(171));
 
-
     }
+
+
 
 
 }

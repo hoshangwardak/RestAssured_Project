@@ -40,6 +40,29 @@
   to be passed such as "Integer.class" It means that this is a type I am storing.
   
 - We can assert the size of list with assertThat(allIds, hassize(171))
+
+- POST request needs the following
+  body, data format
+  
+- What is the difference between content-Type header or Accept header
+  Content-Type header in the request is you are telling the server what are you sending
+  Accept header is you are telling the server this is format I want, or I'll accept
+  
+- 201 means no content ==> Successful
+
+- Adding a huge payload through external file type
+  Right click on your project root level and create a file and save it as .json
+  
+- Serialization: means turning Java Object into Json or text
+- De-serialization: means turning Json or text to Java object
+- This is possible with the help of Jackson Databind dependency
+- All you have to do is to add it into your pom.xml file
+
+
+- POJO: Plain Old Java Object
+
+
+
   
   
   

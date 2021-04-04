@@ -3,7 +3,7 @@ package day2;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import utility.BreakingBadAPI_BaseTest;
+import utils.BreakingBadAPI_BaseTest;
 
 import static io.restassured.RestAssured.*;
 

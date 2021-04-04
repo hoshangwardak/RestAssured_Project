@@ -1,17 +1,12 @@
 package day3.Assignment;
 
-import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import utility.ConfigurationReader;
-import utility.SpartansNoAuthBaseTest;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.MatcherAssert.*;

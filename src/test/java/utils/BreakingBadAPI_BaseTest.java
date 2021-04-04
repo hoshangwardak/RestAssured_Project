@@ -1,4 +1,4 @@
-package utility;
+package utils;
 
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.AfterAll;
