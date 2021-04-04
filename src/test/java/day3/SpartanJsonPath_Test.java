@@ -8,6 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import utility.SpartansNoAuthBaseTest;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import static io.restassured.RestAssured.*;
@@ -59,9 +60,48 @@ public class SpartanJsonPath_Test extends SpartansNoAuthBaseTest {
         String name = jsonPath.getString("[1].name");
         System.out.println("name = " + name);
 
+        Map<String, Object> mapJsonArray = jsonPath.getMap("[0]");
+        System.out.println("jsonArray = " + mapJsonArray);
+
+        // We can do this way as well but line 56 makes much more sense
+        //System.out.println("jsonPath.getInt(\"id[0]\") = " + jsonPath.getInt("id[0]"));
+
+    }
+
+    @DisplayName("Extract data from GET spartans/search")
+    @Test
+    public void testGetSearchSpartans() {
+
+    JsonPath jsonPath =
+            given()
+                        .queryParam("nameContains","S")
+                        .queryParam("gender","Male")
+                        .log().all()
+                .when()
+                        .get("spartans/search")
+                        .prettyPeek()
+                        .jsonPath()
+                        ;
+
+        int id = jsonPath.getInt("content[0].id");
+        System.out.println("id = " + id);
+
+        String name = jsonPath.getString("content[0].name");
+        System.out.println("name = " + name);
+
+        String gender = jsonPath.getString("content[0].gender");
+        System.out.println("gender = " + gender);
+
+        long phone = jsonPath.getLong("content[0].phone");
+        System.out.println("phone = " + phone);
+
+        // storing first jsonObject into a map
+        Map<String, Object> firstJsonObjectInMap = jsonPath.getJsonObject("content[0]");
+        System.out.println("firstJsonObjectInMap = " + firstJsonObjectInMap);
 
 
-        
+
+
     }
 
 

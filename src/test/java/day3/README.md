@@ -26,4 +26,13 @@
   number and then . operator and you can all store them into there respective return types.
   e.g: jsonPath("[0].id");
   
+- If you the whole json array as your data then you don't have to do .id, you can just pass 
+  the index number like [0]
+  
+- Storing jsonObject into a map
+  Map<String, Object> firstJsonObjectInMap = jsonPath.getJsonObject("content");
+  
+- 
+  
+  
 
