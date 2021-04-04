@@ -56,9 +56,37 @@ public class SpartanUpdatingData_Test extends SpartansNoAuthBaseTest {
     @Test
     public void testPartialUpdateWithString() {
 
+        String patchBody = "{\"gender\": \"Female\"}";
 
+            given()
+                    .log().all()
+                    .pathParam("id",33)
+                    .contentType(ContentType.JSON)
+                    .body(patchBody)
+            .when()
+                    .patch("spartans/{id}")
+            .then()
+                    .statusCode(204)
+                    ;
 
     }
+
+    @DisplayName("Test Delete/ spartans/{id} ")
+    @Test
+    public void testDeleteOne() {
+
+        given()
+                .log().uri()
+                .pathParam("id",34)
+        .when()
+                .delete("spartans/{id}")
+        .then()
+                .statusCode(is(equalTo(204)))
+        ;
+
+    }
+
+
 
 
 

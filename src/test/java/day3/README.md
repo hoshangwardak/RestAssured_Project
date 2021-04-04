@@ -64,9 +64,15 @@
   and setter, also No Arg Constructor and toString() method for
   preview
   
-- Put as updating data
+- POST, PUT, PATCH
 
-- 204 means 
+- 204 means Success No Content
+- 404 You will definitely get this if you run your test after deleting the specific data
+- 415 means no content type
+
+
+
+
   
   
 
