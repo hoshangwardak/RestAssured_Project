@@ -3,6 +3,7 @@ package day3;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import pojo.Spartan;
 import utils.SpartansNoAuthBaseTest;
 import utils.Utility;
 
@@ -95,7 +96,7 @@ public class SpartanPostingData_Test extends SpartansNoAuthBaseTest {
         given()
                 .log().all()
                 .contentType(ContentType.JSON)
-                .body(Utility.randomSpartanInMapObject())
+                .body(Utility.randomSpartanAsMapObject())
         .when()
                 .post("spartans")
         .then()
@@ -108,7 +109,8 @@ public class SpartanPostingData_Test extends SpartansNoAuthBaseTest {
     @Test
     public void testPostDataWithPOJOAsBody() {
 
-        // Spartan sp = new Spartan("Abigale", "Female", "18000233232L");
+        Spartan spartan = new Spartan("Abigale", "Female", 18000233232L);
+        // above will turn into below:
 /*
         {
             "name": "Abigale",
@@ -116,6 +118,20 @@ public class SpartanPostingData_Test extends SpartansNoAuthBaseTest {
             "phone": 12345678913
         }
  */
+       // System.out.println(spartan);
+
+        given()
+                .log().all()
+                .contentType(ContentType.JSON)
+                .body(spartan)
+        .when()
+                .post("spartans")
+        .then()
+                .log().all()
+                .statusCode(201)
+                ;
+
+
 
 
 

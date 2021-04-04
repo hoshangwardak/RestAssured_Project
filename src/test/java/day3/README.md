@@ -60,7 +60,15 @@
 
 
 - POJO: Plain Old Java Object
+  This POJO class needs to have encapsulated fields and getter
+  and setter, also No Arg Constructor and toString() method for
+  preview
+  
+- Put as updating data
 
+- 204 means 
+  
+  
 
 
   
