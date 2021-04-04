@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import utility.SpartansNoAuthBaseTest;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import static io.restassured.RestAssured.*;
@@ -99,7 +100,55 @@ public class SpartanJsonPath_Test extends SpartansNoAuthBaseTest {
         Map<String, Object> firstJsonObjectInMap = jsonPath.getJsonObject("content[0]");
         System.out.println("firstJsonObjectInMap = " + firstJsonObjectInMap);
 
+    }
 
+    @DisplayName("Saving json array fields into a list")
+    @Test
+    public void testSavingJsonArrayFieldsIntoList() {
+
+        JsonPath jsonPath =
+                given()
+                        .queryParam("nameContains","P")
+                        .queryParam("gender","Male")
+                        .log().all()
+                        .when()
+                        .get("spartans/search")
+                        .prettyPeek()
+                        .jsonPath()
+                ;
+
+        // Save all the id into a list
+        List<Integer> ids = jsonPath.getList("content.id");
+        List<Integer> ids2 = jsonPath.getList("content.id",Integer.class);
+        System.out.println("ids = " + ids2);
+
+        List<String> names = jsonPath.getList("content.name");
+        List<String> names2 = jsonPath.getList("content.name",String.class);
+        System.out.println("names = " + names2);
+
+        List<Long> phoneNumbers = jsonPath.getList("content.phone");
+        List<Long> phoneNumbers2 = jsonPath.getList("content.phone",Long.class);
+        System.out.println("phoneNumbers = " + phoneNumbers2);
+
+        // Saving the whole spartan into a list of Map
+        List<Map<String,Object>> spartans = jsonPath.getList("content");
+        System.out.println("spartans = " + spartans);
+    }
+
+    @DisplayName("Get List Practice for Get spartans")
+    @Test
+    public void getListOutOfAllSpartans() {
+
+        JsonPath jsonPath = get("spartans").jsonPath();
+
+        List<Integer> allIds = jsonPath.getList("id", Integer.class);
+        assertThat(allIds, hasSize(171));
+
+        List<String> allNames = jsonPath.getList("names",String.class);
+        assertThat(allNames, hasSize(171));
+
+        List<Long> allPhoneNumbers = jsonPath.getList("phone",Long.class);
+        assertThat(allNames, hasSize(171));
 
 
     }

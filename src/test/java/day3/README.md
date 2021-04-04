@@ -32,7 +32,15 @@
 - Storing jsonObject into a map
   Map<String, Object> firstJsonObjectInMap = jsonPath.getJsonObject("content");
   
-- 
+- Saving the whole spartan into a list of Map
+  List<Map<String,Object>> spartans = jsonPath.getList("content");
+  
+- List<Integer> ids2 = jsonPath.getList("content.id",Integer.class);
+  This is the overloaded version of getting data from the list. It requires another parameter
+  to be passed such as "Integer.class" It means that this is a type I am storing.
+  
+- We can assert the size of list with assertThat(allIds, hassize(171))
+  
   
   
 
