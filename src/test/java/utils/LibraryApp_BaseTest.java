@@ -1,5 +1,6 @@
 package utils;
 
+import com.github.javafaker.Faker;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -11,6 +12,7 @@ import pojo.Spartan;
 import utils.SpartansNoAuthBaseTest;
 import utils.Utility;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import static io.restassured.RestAssured.*;
@@ -23,7 +25,6 @@ public abstract class LibraryApp_BaseTest {
     static String libraryEmail = ConfigurationReader.getProperty("libraryUsername");
     static String libraryPassword = ConfigurationReader.getProperty("libraryPassword");
     public static String librarianToken;
-
 
     @BeforeAll
     public static void settingUpLibraryApp() {
@@ -47,6 +48,18 @@ public abstract class LibraryApp_BaseTest {
                 .path("token")
                 ;
         return myToken;
+    }
+
+    public static Map<String, Object> getRandomBook() {
+        Faker faker = new Faker();
+        Map<String,Object> myBookMap = new HashMap<>();
+        myBookMap.put("name", faker.book().title()      );
+        myBookMap.put("isbn", faker.number().digits(8) );
+        myBookMap.put("year", faker.number().numberBetween(1600, 2021));
+        myBookMap.put("author",faker.book().author() );
+        myBookMap.put("book_category_id", faker.number().numberBetween(1,20)  );
+        myBookMap.put("description",faker.chuckNorris().fact()  );
+        return myBookMap;
     }
 
 

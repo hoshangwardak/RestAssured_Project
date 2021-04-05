@@ -74,29 +74,44 @@ public class LibraryAppAuthorizedRequestTest extends LibraryApp_BaseTest {
             book_category_id 2
             description good book
     */
-        Map<String, Object> myBookMap = new HashMap<>();
-        myBookMap.put("name","B21 RestAssured");
-        myBookMap.put("isbn","B21-000001");
-        myBookMap.put("year",2021);
-        myBookMap.put("author","Cybertek");
-        myBookMap.put("book_category_id",4);
-        myBookMap.put("description","B21 learning RestAssured to shine");
+        Map<String, Object> newBook = getRandomBook();
+
+        int newBookId =
+                given()
+                        .log().all()
+                        .header("x-library-token", librarianToken)
+                        .contentType(ContentType.URLENC)
+                        // using formParams with s we can pass multiple param in one shot
+                        .formParams(  newBook  ).
+                when()
+                        .post("add_book").
+                then()
+                        .log().body()
+                        .statusCode(200)
+                        .extract()
+                        .jsonPath().getInt("book_id")
+                ;
+
+        // Send additional request to GET /get_book_by_id/{book_id}
+        // to verify all data has been added correctly
 
         given()
-                .log().all()
-                .header("x-library-token",librarianToken)
-                .contentType(ContentType.URLENC)
-                .formParams(myBookMap)
-                .when()
-                .post("add_book")
-                .then()
-                .log().all()
+                .header("x-library-token", librarianToken)
+                .log().uri()
+                .pathParam("book_id" , newBookId).
+        when()
+                .get("get_book_by_id/{book_id}").
+        then()
+                .log().body()
                 .statusCode(200)
+                .body("id" , is( newBookId+"" ) )
+                .body("name",  is ( newBook.get("name") ) )
+                .body("isbn",  is ( newBook.get("isbn") ) )
+                .body("year",  is ( newBook.get("year")+"" ) )
+                .body("author",  is ( newBook.get("author") ) )
+                .body("book_category_id",  is ( newBook.get("book_category_id")+"" ) )
+                .body("description",  is ( newBook.get("description") ) )
                 ;
     }
-
-
-
-
 
 }
