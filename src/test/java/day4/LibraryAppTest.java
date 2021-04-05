@@ -96,6 +96,9 @@ public class LibraryAppTest extends LibraryApp_BaseTest {
         .then()
                 .log().all()
                 .statusCode(is(200))
+                .body("book_count", is("2889"))
+                .body("borrowed_books", is("794"))
+                .body("users", is("8778"))
                 ;
     }
 
