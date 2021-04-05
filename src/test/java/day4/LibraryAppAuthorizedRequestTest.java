@@ -25,7 +25,7 @@ public class LibraryAppAuthorizedRequestTest extends LibraryApp_BaseTest {
         //System.out.println("myToken = " + myToken);
         given()
                 .log().all()
-                .header("x-library-token",myToken)
+                .header("x-library-token",librarianToken)
                 .pathParam("id","1")
         .when()
                 .get("get_user_by_id/{id}")
@@ -41,7 +41,7 @@ public class LibraryAppAuthorizedRequestTest extends LibraryApp_BaseTest {
     public void testGetAllUsers() {
 
         given()
-                .header("x-library-token",myToken)
+                .header("x-library-token",librarianToken)
         .when()
                 .get("get_all_users")
         .then()

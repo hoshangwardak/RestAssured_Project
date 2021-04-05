@@ -22,14 +22,14 @@ public abstract class LibraryApp_BaseTest {
 
     static String libraryEmail = ConfigurationReader.getProperty("libraryUsername");
     static String libraryPassword = ConfigurationReader.getProperty("libraryPassword");
-    public static String myToken;
+    public static String librarianToken;
 
 
     @BeforeAll
     public static void settingUpLibraryApp() {
         RestAssured.baseURI = "http://library1.cybertekschool.com";
         RestAssured.basePath = "/rest/v1/";
-        myToken = getToken(libraryEmail, libraryPassword);
+        librarianToken = getToken(libraryEmail, libraryPassword);
     }
 
     @AfterAll
