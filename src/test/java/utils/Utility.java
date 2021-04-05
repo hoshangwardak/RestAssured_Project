@@ -9,9 +9,10 @@ import java.util.Map;
 
 public class Utility {
 
+     private static Faker faker = new Faker();
+
     @DisplayName("This method will create random Spartan as Map")
     public static Map<String, Object> randomSpartanAsMapObject() {
-        Faker faker = new Faker();
         Map<String, Object> randomSpartanInMapObject = new LinkedHashMap<>();
         randomSpartanInMapObject.put("name",faker.name().firstName());
         randomSpartanInMapObject.put("gender",faker.demographic().sex());
@@ -21,7 +22,6 @@ public class Utility {
 
     @DisplayName("This method will create random Spartan as POJO")
     public static Spartan randomSpartanAsPOJOObject() {
-        Faker faker = new Faker();
         Spartan spartan = new Spartan();
         spartan.setName(faker.name().firstName());
         spartan.setGender(faker.demographic().sex());
