@@ -56,7 +56,7 @@ public class SpartanRandomPOST_Test extends SpartansNoAuthBaseTest {
                 ;
     }
 
-    @DisplayName("POST spartans and then GET spartans to verify our data ")
+    @DisplayName("POST spartans and then GET spartans to verify the data with jsonPath() ")
     @Test
     public void testAddOneDataThenGetOneDataToVerify() {
 
@@ -92,5 +92,33 @@ public class SpartanRandomPOST_Test extends SpartansNoAuthBaseTest {
                 ;
     }
 
+    @DisplayName("POST spartans and then GET spartans/{id} to verify the data with Extract method ")
+    @Test
+    public void testAddOneDataThenGetOneDataToVerifyInTheChain() {
 
-}
+        Spartan spartan = Utility.randomSpartanAsPOJOObject();
+
+        int newID = given()
+                .log().body()
+                .contentType(ContentType.JSON)
+                .body(spartan)
+                .when()
+                .post("spartans")
+                .then()
+                .log().body()
+                .statusCode(is(201))
+                .extract()
+                //.path("data.id")
+                .jsonPath().get("data.id")
+                ;
+        System.out.println("newID = " + newID);
+
+    }
+
+
+
+
+
+
+
+    }

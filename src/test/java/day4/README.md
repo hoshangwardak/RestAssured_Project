@@ -20,6 +20,9 @@
      Note: Then you can validate that data in the validationResponse's body as shown below:
      .body("id",is(myId)) or with the help of POJO class .body("name", is(spartan.getName()))
      
-  2. 
-  
-    
+  2. extract() method returns extractable response. When you put . after extract() you grab
+     anything you want through the .path("data.id") you pass the parameter and store it in your variable.
+     you can also use .jsonPath().get("data.id")
+     Note: you cannot extract two different data type because you can store only one value
+     in a variable.
+     

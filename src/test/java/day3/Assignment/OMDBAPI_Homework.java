@@ -82,13 +82,14 @@ public class OMDBAPI_Homework {
         List<String> allIMDBID = new LinkedList<>();
         List<String> allTitles = new LinkedList<>();
 
-            for (int i=0; i<by10+1; i++) {
+            for (int i=1; i<=by10+1; i++) {
 
                 js =
                         given()
                                 .queryParam("apikey","6f1abf8")
                                 .queryParam("s", "Flash")
                                 .queryParam("type","Series")
+                                .queryParam("page", i)
                                 .when()
                                 .get("http://www.omdbapi.com/")
                                 .jsonPath()
