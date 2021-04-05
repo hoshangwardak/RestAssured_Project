@@ -10,10 +10,7 @@ import utils.ConfigurationReader;
 import utils.SpartansNoAuthBaseTest;
 import utils.Utility;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -64,6 +61,40 @@ public class LibraryAppAuthorizedRequestTest extends LibraryApp_BaseTest {
         Set<String> uniqueNames = new HashSet<>( allLibrarianNames );
         System.out.println("uniqueNames = " + uniqueNames.size());
     }
+
+    @DisplayName("POST /add_book")
+    @Test
+    public void testAddOneBook() {
+
+    /*  These are my formParams in order to add a book
+            name Awesome book
+            isbn IMDBS132
+            year 2019
+            author Ike
+            book_category_id 2
+            description good book
+    */
+        Map<String, Object> myBookMap = new HashMap<>();
+        myBookMap.put("name","B21 RestAssured");
+        myBookMap.put("isbn","B21-000001");
+        myBookMap.put("year",2021);
+        myBookMap.put("author","Cybertek");
+        myBookMap.put("book_category_id",4);
+        myBookMap.put("description","B21 learning RestAssured to shine");
+
+        given()
+                .log().all()
+                .header("x-library-token",librarianToken)
+                .contentType(ContentType.URLENC)
+                .formParams(myBookMap)
+                .when()
+                .post("add_book")
+                .then()
+                .log().all()
+                .statusCode(200)
+                ;
+    }
+
 
 
 

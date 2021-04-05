@@ -40,7 +40,8 @@
 - Extracting token while logging into library app and saving it into a variable and use it
   for next login. e.g: .path("token")
   
-- 
+- formParams() returns Map in which we can pass multiple param
+
 
 
 
