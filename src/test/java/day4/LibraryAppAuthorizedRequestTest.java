@@ -1,6 +1,7 @@
 package day4;
 
 import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -9,7 +10,10 @@ import utils.ConfigurationReader;
 import utils.SpartansNoAuthBaseTest;
 import utils.Utility;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -40,14 +44,28 @@ public class LibraryAppAuthorizedRequestTest extends LibraryApp_BaseTest {
     @Test
     public void testGetAllUsers() {
 
+    List<String> allLibrarianNames =
         given()
                 .header("x-library-token",librarianToken)
         .when()
                 .get("get_all_users")
         .then()
+                //.log().all()
                 .statusCode(is(200))
-                ;
+                .extract()
+                .jsonPath()
+                .getList("name",String.class)
+               ;
+
+        // assert the size is 8778
+        assertThat(allLibrarianNames.size(), is(8778));
+
+        // print the unique names count
+        Set<String> uniqueNames = new HashSet<>( allLibrarianNames );
+        System.out.println("uniqueNames = " + uniqueNames.size());
     }
+
+
 
 
 }
