@@ -2,6 +2,7 @@ package day4;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -100,7 +101,22 @@ public class LibraryAppTest extends LibraryApp_BaseTest {
                 .body("borrowed_books", is("794"))
                 .body("users", is("8778"))
                 ;
+
+        JsonPath jsonPath =
+                    given()
+                            .header("x-library-token",myToken)
+                    .when()
+                            .get("dashboard_stats")
+                    .then()
+                            .statusCode(is(200))
+                            .extract()
+                            .jsonPath()
+                            ;
+        assertThat( jsonPath.getInt("book_count"), is(2889) );
+        assertThat( jsonPath.getInt("borrowed_books"), is(794) );
+        assertThat( jsonPath.getInt("users"), is(8778) );
     }
+
 
 
 

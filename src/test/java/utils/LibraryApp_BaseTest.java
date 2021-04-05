@@ -20,6 +20,7 @@ import static org.hamcrest.Matchers.*;
 
 public abstract class LibraryApp_BaseTest {
 
+
     @BeforeAll
     public static void settingUpLibraryApp() {
         RestAssured.baseURI = "http://library1.cybertekschool.com";
@@ -29,6 +30,19 @@ public abstract class LibraryApp_BaseTest {
     @AfterAll
     public static void cleanUpLibraryApp() {
         reset();
+    }
+
+
+    public static String getToken(String username, String password) {
+        String myToken = given()
+                .contentType(ContentType.URLENC)
+                .formParam("email",username)
+                .formParam("password",password)
+                .when()
+                .post("login")
+                .path("token")
+                ;
+        return myToken;
     }
 
 
