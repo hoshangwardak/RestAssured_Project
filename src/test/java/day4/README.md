@@ -26,3 +26,15 @@
      Note: you cannot extract two different data type because you can store only one value
      in a variable.
      
+- You can get the data as well with the locationHeader which is a complete url because the
+  moment it starts with http it's going to be treated like full url and get you the data. 
+  
+- The Library App Content Type is URLENCODED
+- Also in order to pass username and password we need to provide a key and value which 
+  is exactly like form that needs to be filled. See below:
+  .formParam("email",libraryEmail)
+  .formParam("password",libraryPassword)
+  
+- 401 means not authorized
+
+
