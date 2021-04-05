@@ -89,9 +89,9 @@ public class OMDBAPI_Homework {
                                 .queryParam("apikey","6f1abf8")
                                 .queryParam("s", "Flash")
                                 .queryParam("type","Series")
-                                .queryParam("page", i)
+                                //.queryParam("page", i)
                                 .when()
-                                .get("http://www.omdbapi.com/")
+                                .get("http://www.omdbapi.com/?page="+i)
                                 .jsonPath()
                 ;
                 allIMDBID.addAll(js.getList("Search.imdbID"));
