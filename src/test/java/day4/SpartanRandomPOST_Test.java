@@ -1,19 +1,17 @@
 package day4;
 
-import groovy.transform.ToString;
 import io.restassured.http.ContentType;
-import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pojo.Spartan;
 import utils.SpartansNoAuthBaseTest;
 import utils.Utility;
 
-import javax.xml.ws.Response;
-import java.io.File;
 import java.util.Map;
 
 import static io.restassured.RestAssured.*;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 public class SpartanRandomPOST_Test extends SpartansNoAuthBaseTest {
@@ -55,6 +53,42 @@ public class SpartanRandomPOST_Test extends SpartansNoAuthBaseTest {
                 .body("data.name", is(spartan.getName()))
                 .body("data.gender", equalTo(spartan.getGender()))
                 .body("data.phone", is(spartan.getPhone()))
+                ;
+    }
+
+    @DisplayName("POST spartans and then GET spartans to verify our data ")
+    @Test
+    public void testAddOneDataThenGetOneDataToVerify() {
+
+        Spartan spartan = Utility.randomSpartanAsPOJOObject();
+
+        Response response =
+                given()
+                .log().body()
+                .contentType(ContentType.JSON)
+                .body(spartan)
+                .when()
+                .post("spartans")
+                .prettyPeek()
+                ;
+          int myId = response.path("data.id");
+        System.out.println("myId = " + myId);
+        //int myId = response.jsonPath().getInt("data.id");
+        assertThat(response.statusCode(), is(201));
+
+        given()
+                .log().uri()
+                .pathParam("id",myId)
+                .contentType(ContentType.JSON)
+                .when()
+                .get("spartans/{id}")
+                .then()
+                .log().body()
+                .statusCode(200)
+                .body("id",is(myId))
+                .body("name", is(spartan.getName()))
+                .body("gender", is(spartan.getGender()))
+                .body("phone", is(spartan.getPhone()))
                 ;
     }
 

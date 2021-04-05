@@ -13,4 +13,13 @@
 - You can do the same thing with POJO class as shown below:
   .body("data.name", is(spartan.getName()))  
   
-- 
+- There are 2 ways to extract the data from payload and store it into a variable:
+
+  1. response.path() or response.jasonPath() = basically store it into a variable, then you
+     can use that variable in your get request to validate the data. 
+     Note: Then you can validate that data in the validationResponse's body as shown below:
+     .body("id",is(myId)) or with the help of POJO class .body("name", is(spartan.getName()))
+     
+  2. 
+  
+    
