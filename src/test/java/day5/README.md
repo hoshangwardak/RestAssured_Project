@@ -20,6 +20,17 @@
   ValueSource and then pass variable in method signature but dataTypes must be small with an
   s at the end. But you can only provide one value per iteration in the parameterization
   
+- @CsvSource
+  Reads the file based on Column, not row
+  CsvSource does take any header 
+  
 - @CsvFileSource
-
+  For this you need to create a file under resource directory as .csv
+  then you have to pass @CsvFileSource(resources = {"state_city_zipCount.csv"}, THE HEADER THAT YOU WANT TO SKIP GOES HERE)
+  you can use resources as address for the file but make sure it starts with a /
+  If you are using file instead of resource then you'll have to copy content root.
+  If you want to add more than one file then please open curley braces and put  a comma between
+  each file address you passing
+  
+  
   
