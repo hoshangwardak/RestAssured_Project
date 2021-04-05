@@ -74,6 +74,31 @@ public class LibraryAppTest extends LibraryApp_BaseTest {
                 ;
     }
 
+    @DisplayName("GET /dashboard_stats endpoint")
+    @Test
+    public void testDashboardNumbers() {
+
+       // String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjp7ImlkIjoiMjA5MCIsImZ1bGxfbmFtZSI6IlRlc3QgTGlicmFyaWFuIDY5IiwiZW1haWwiOiJsaWJyYXJpYW42OUBsaWJyYXJ5IiwidXNlcl9ncm91cF9pZCI6IjIifSwiaWF0IjoxNjE3NTk2MTczLCJleHAiOjE2MjAxODgxNzN9.XmrfU1uypIvRy-v5_7ZevCnwcFvpk3J6udQwDxAtqh8";
+
+        String myToken = given()
+                .contentType(ContentType.URLENC)
+                .formParam("email",libraryEmail)
+                .formParam("password",libraryPassword)
+                .when()
+                .post("login")
+                .path("token")
+                ;
+
+        given()
+                .header("x-library-token",myToken)
+        .when()
+                .get("dashboard_stats")
+        .then()
+                .log().all()
+                .statusCode(is(200))
+                ;
+    }
+
 
 
 
