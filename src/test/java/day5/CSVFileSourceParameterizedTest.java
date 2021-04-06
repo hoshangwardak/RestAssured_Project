@@ -33,10 +33,8 @@ public class CSVFileSourceParameterizedTest {
                 .statusCode(is(200))
                 .body("places", hasSize( zipCountArg ))
                 ;
-
-
-
     }
+
 
 
 }
