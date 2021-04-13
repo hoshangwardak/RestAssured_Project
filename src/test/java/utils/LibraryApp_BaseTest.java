@@ -31,11 +31,17 @@ public abstract class LibraryApp_BaseTest {
         RestAssured.baseURI = "http://library1.cybertekschool.com";
         RestAssured.basePath = "/rest/v1/";
         librarianToken = getToken(libraryEmail, libraryPassword);
+        String url = ConfigurationReader.getProperty("library1.database.url");
+        String username = ConfigurationReader.getProperty("library1.database.username") ;
+        String password = ConfigurationReader.getProperty("library1.database.password") ;
+        DB_Utility.createConnection(url, username, password);
+
     }
 
     @AfterAll
     public static void cleanUpLibraryApp() {
         reset();
+        DB_Utility.destroy();
     }
 
     public static String getToken(String username, String password) {

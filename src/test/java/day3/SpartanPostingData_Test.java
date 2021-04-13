@@ -4,10 +4,13 @@ import io.restassured.http.ContentType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pojo.Spartan;
+import utils.ExcelReader;
 import utils.SpartansNoAuthBaseTest;
 import utils.Utility;
 
 import java.io.File;
+import java.util.List;
+import java.util.Map;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
@@ -130,13 +133,35 @@ public class SpartanPostingData_Test extends SpartansNoAuthBaseTest {
                 .log().all()
                 .statusCode(201)
                 ;
+    }
 
+    @DisplayName("POST/ spartans from Excel")
+    @Test
+    public void addingSpartansFromExcel() {
 
+        String path = "MOCK_DATA.xlsx";
 
+        List<Map<String,String>> listOfMap = ExcelReader.listOfMaps(path,"data");
 
+        for (int i=0; i<listOfMap.size(); i++) {
+
+            given()
+                    .log().all()
+                    .contentType(ContentType.JSON)
+                    .body(listOfMap.get(i))
+                    .when()
+                    .post("spartans")
+                    .then()
+                    .log().all()
+                    .statusCode(201)
+
+            ;
+
+        }
 
 
     }
+
 
 
 }

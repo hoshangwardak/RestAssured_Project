@@ -1,4 +1,4 @@
-package day3.Assignment;
+package day3.assignment;
 
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
